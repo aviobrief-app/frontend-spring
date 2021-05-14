@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+    <!-- Bootstrap Css -->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
+
+    <!--    <link rel="stylesheet" href="style.css">-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+    <title>AD - Add Document</title>
+
+</head>
+
+<body>
+
+<!-- Navbar-Main -->
+<th:block th:include="~{fragments/nav-main-fragment}"></th:block>
+<!-- Navbar-Main -->
+
+<!-- Container - Main -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- SideNav -->
+        <th:block th:include="~{fragments/side-nav-fragment}"></th:block>
+        <!-- End SideNav -->
+
+        <!-- Main -->
+        <div class="col-9 bg-light ">
+
+            <div class="bg-light border border-1 p-3 mt-3">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/documents}" type="button" class="btn nav-link">
+                            Add Document
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/document-subchapters}" type="button" class="btn nav-link">
+                            Add Document Sub Chapter
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/ata-chapters}" type="button" class="btn nav-link">
+                            Add ATA Chapter
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/ata-subchapters}" type="button" class="btn nav-link">
+                            Add ATA SubChapter
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+
+                        <button class="nav-link active"
+                                id="subChapter-tab" data-bs-toggle="tab" data-bs-target="#subChapter"
+                                type="button" role="tab" aria-controls="subChapter" aria-selected="false">
+                            Add Article
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+
+                    <!--4. Add Article Tab-->
+                    <div class="tab-pane fade my-1 show active"
+                         th:object="${articleAddBindingModel}"
+                         id="subChapter"
+                         role="tabpanel"
+                         aria-labelledby="subChapter-tab">
+
+                        <div class="mx-3">
+                            <form method="POST" th:action="@{/articles}" enctype="multipart/form-data">
+
+                                <!-- row 1. Title Input-->
+                                <div class="row my-3">
+                                    <div class="col-sm-5">
+                                        <label for="title" class="form-label text-start">Title (Required)</label>
+                                        <input th:value="*{title}"
+                                               id="title"
+                                               name="title"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="BASIC PRINCIPLE">
+
+                                        <div th:each="e: ${#fields.errors('title')}"
+                                             th:text="${e}"
+                                             id="titleError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label for="fullReferencePath"
+                                               class="form-label text-start small text-muted">
+                                            Document Ref. (Optional)
+                                        </label>
+                                        <input th:value="*{fullReferencePath}"
+                                               id="fullReferencePath"
+                                               name="fullReferencePath"
+                                               type="text"
+                                               class="form-control text-start small"
+                                               placeholder="DSC-27-10-10 P 1/6">
+                                    </div>
+                                </div>
+                                <!-- row 1. EO Title Input-->
+
+                                <!-- row 2. Text Area-->
+                                <div class="row my-3">
+                                    <div class="col-lg-11">
+                                        <label for="articleText" class="form-label">Article Text (Required)</label>
+                                        <textarea style="height: auto"
+                                                  class="form-control"
+                                                  id="articleText"
+                                                  name="articleText"
+                                                  rows="5"
+                                                  placeholder="Flight control surfaces are all :
+    ‐ Electrically-controlled, and
+    ‐ Hydraulically-activated.
+The stabilizer and rudder can also be mechanically-controlled.
+Pilots use sidesticks to fly the aircraft in pitch and............."
+                                                  th:value="*{articleText}"></textarea>
+
+                                        <div th:each="e: ${#fields.errors('articleText')}"
+                                             th:text="${e}"
+                                             id="articleTextInputError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- row 2.EO Text Area-->
+
+                                <!-- row 3. Image select-->
+                                <div class="row my-3">
+                                    <div class="col-sm-6">
+                                        <label for="image" class="form-label text-start small">Upper Schematic
+                                            (Optional)</label>
+                                        <input class="form-control form-control-sm"
+                                               id="image"
+                                               name="image"
+                                               type="file">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="bottomImage" class="form-label text-start small">Bottom Schematic
+                                            (Optional)</label>
+                                        <input class="form-control form-control-sm"
+                                               id="bottomImage"
+                                               name="bottomImage"
+                                               type="file">
+                                    </div>
+                                </div>
+                                <!-- row 3.EO Image Select-->
+
+                                <!-- row 4.Document, DocumentSubChapter , ATA, ATASubChapter Input-->
+                                <div class="row my-3">
+
+                                    <div class="col-sm-3">
+                                        <label for="documentRef" class="form-label text-start small mb-3">
+                                            Document (Required)</label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="documentRef"
+                                                    name="documentRef"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{documentRef}">VALUE></option>
+                                                <option th:each="d : ${documentDbList}"
+                                                        th:text="|${d.name}|">
+                                                    OPTIONS
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('documentRef')}"
+                                             th:text="${e}"
+                                             id="documentRefError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="documentSubchapterRef" class="form-label text-start small mb-3">
+                                            Subchapter (Optional)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="documentSubchapterRef"
+                                                    name="documentSubchapterRef"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{ataSubChapterRef}">VALUE></option>
+                                            </select>
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('documentSubchapterRef')}"
+                                             th:text="${e}"
+                                             id="documentSubchapterRefError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="chapterRef" class="form-label text-start small mb-3">
+                                            ATA Chapter (Required)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="chapterRef"
+                                                    name="chapterRef"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{chapterRef}">VALUE></option>
+                                                <option th:each="c : ${chapterDBList}"
+                                                        th:text="|${c.ataCode} - ${c.name}|">
+                                                    OPTIONS
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('chapterRef')}"
+                                             th:text="${e}"
+                                             id="chapterRefError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3"   >
+                                        <label for="ataSubChapterRef" class="form-label text-start small mb-3">
+                                            ATA Sub Chapter (Optional)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="ataSubChapterRef"
+                                                    name="ataSubChapterRef"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{ataSubChapterRef}">VALUE></option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- row 4. EO Document, DocumentSubChapter , ATA, ATASubChapter Input-->
+
+                                <div class="row my-5">
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-primary btn-sm" style="width: 100%">
+                                            Add Article
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a th:href="@{/articles}" class="btn btn-primary btn-sm" style="width: 100%">
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <!--3. EO Add Article Tab-->
+
+                </div>
+            </div>
+
+            <!-- Success message display-->
+            <div class="toast" id="seed-ok" style="position: fixed; top: 15em; left: 50em;">
+
+                <div class="toast-header" style="background-color: lightcyan">
+                    <strong class="me-auto">AvioDesk says:</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+
+                <div class="toast-body " style="background-color: lightcyan">
+                    Successfully added!
+                </div>
+            </div>
+
+            <script th:if="${seedOk}">
+                $(document).ready(function () {
+                    $('.toast').toast('show');
+                });
+            </script>
+            <!-- EO Success message display-->
+
+
+        </div>
+        <!-- End Main -->
+    </div>
+
+
+</div>
+
+<!-- Optional JavaScript-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"-->
+<!--        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"-->
+<!--        crossorigin="anonymous"></script>-->
+
+</body>
+
+<script src="/js/sidebar-link-highlight.js"></script>
+
+
+</html>

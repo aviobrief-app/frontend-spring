@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+    <!-- Bootstrap Css -->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
+
+    <!--    <link rel="stylesheet" href="style.css">-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+    <title>AD - Add Document</title>
+
+</head>
+
+<body>
+
+<!-- Navbar-Main -->
+<th:block th:include="~{fragments/nav-main-fragment}"></th:block>
+<!-- Navbar-Main -->
+
+
+<!-- Container - Main -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- SideNav -->
+        <th:block th:include="~{fragments/side-nav-fragment}"></th:block>
+        <!-- End SideNav -->
+
+
+        <!-- Main -->
+        <div class="col-9 bg-light ">
+
+
+            <div class="bg-light border border-1 p-3 mt-3">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link "
+                                th:classappend="${redirectFrom == 'add-document-post' ? 'active' : ''}"
+                                id="document-tab" data-bs-toggle="tab"
+                                data-bs-target="#document"
+                                type="button" role="tab" aria-controls="document" aria-selected="true">Add Document
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link "
+                                th:classappend="${redirectFrom == 'add-chapter-post' ? 'active' : ''}"
+                                id="chapter-tab" data-bs-toggle="tab" data-bs-target="#chapter"
+                                type="button" role="tab" aria-controls="chapter" aria-selected="false">Add ATA Chapter
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link"
+                                th:classappend="${redirectFrom == 'add-subChapter-post' ? 'active' : ''}"
+                                id="subChapter-tab" data-bs-toggle="tab" data-bs-target="#subChapter"
+                                type="button" role="tab" aria-controls="subChapter" aria-selected="false">Add ATA
+                            SubChapter
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+
+                    <!--1. Add Document Tab-->
+                    <div class="tab-pane fade my-3 bg-light"
+                         th:object="${documentAddBindingModel}"
+                         th:classappend="${redirectFrom == 'add-document-post' ? 'show active' : ''}"
+                         id="document"
+                         role="tabpanel"
+                         aria-labelledby="document-tab">
+
+                        <div class="mx-5">
+                            <!--                                todo - add addDocumentBindingObject-->
+                            <form method="POST"
+                                  th:action="@{/documents/add-document}">
+
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-left small">Document Name</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input
+                                                        th:value="*{documentName}"
+                                                        id="documentName"
+                                                        name="documentName"
+                                                        type="text" class="form-control" placeholder="Document">
+                                            </div>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-primary mx-2 btn-sm">Add</button>
+                                            <a href="/documents/add-document" class="btn btn-primary btn-sm">Cancel</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center small">
+                                            <small
+                                                    th:each="e: ${#fields.errors('documentName')}"
+                                                    th:text="${e}"
+                                                    id="nameError"
+                                                    class="text-danger">
+                                            </small>
+                                            <small th:if="${documentExistsError}" id="documentExistsError"
+                                                   class="text-danger">Document already exists in DB!
+                                            </small>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!--1. EO Add Document Tab-->
+
+                    <!--2. Add Chapter Tab-->
+                    <div class="tab-pane fade my-3 bg-light"
+                         th:object="${chapterAddBindingModel}"
+                         th:classappend="${redirectFrom == 'add-chapter-post' ? 'show active' : ''}"
+                         id="chapter"
+                         role="tabpanel"
+                         aria-labelledby="chapter-tab">
+
+                        <div class="mx-5">
+                            <form method="POST"
+                                  th:action="@{/documents/add-chapter}">
+
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-left small">ATA Code</td>
+                                        <td class="text-left small">Chapter Name</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input th:field="*{ataChapter}"
+                                                       th:errorclass="is-invalid"
+                                                       id="ataChapter"
+                                                       name="ataChapter"
+                                                       type="number" class="form-control" placeholder="ATA Code">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input th:field="*{name}"
+                                                       th:errorclass="is-invalid"
+                                                       required minlength="3"
+                                                       id="chapterName"
+                                                       name="name"
+                                                       type="text" class="form-control" placeholder="Chapter Name">
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-primary mx-2 btn-sm">Add</button>
+                                            <a href="/documents/add-chapter" class="btn btn-primary btn-sm">Cancel</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center small">
+                                            <small
+                                                    th:each="e: ${#fields.errors('ataChapter')}"
+                                                    th:text="${e}"
+                                                    id="ataChapterError"
+                                                    class="text-danger">
+                                            </small>
+                                            <small th:if="${chapterExistsError}" id="chapterExistsError"
+                                                   class="text-danger">ATA Code already exists in DB!
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <small
+                                                    th:each="e: ${#fields.errors('name')}"
+                                                    th:text="${e}"
+                                                    id="ataNameError"
+                                                    class="text-danger">
+                                            </small>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!--2. EO Add Chapter Tab-->
+
+                    <!--3. Add Subchapter Tab-->
+                    <div class="tab-pane fade my-3"
+                         th:object="${subChapterAddBindingModel}"
+                         th:classappend="${redirectFrom == 'add-subChapter-post' ? 'show active' : ''}"
+                         id="subChapter"
+                         role="tabpanel"
+                         aria-labelledby="subChapter-tab">
+
+                        <div class="mx-5">
+                            <form method="POST"
+                                  th:action="@{/documents/add-subChapter}">
+
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-left small">ATA Chapter (Required)</td>
+                                        <td class="text-left small">SubChapter ATA code</td>
+                                        <td class="text-left small">SubChapter Name</td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <select
+                                                        id="ataChapterRefInput"
+                                                        name="ataChapterRefInput"
+                                                        class="form-select"
+                                                        aria-label="Select ATA Chapter">
+                                                    <option selected th:text="*{ataChapterRefInput}">Select...</option>
+                                                    <option th:each="a : ${ataDBList}" th:value="${a}" th:text="${a}">
+                                                        One
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input
+                                                        th:value="*{ataSubCode}"
+                                                        id="ataSubCode"
+                                                        name="ataSubCode"
+                                                        type="number"
+                                                        class="form-control"
+                                                        placeholder="SubChapter ATA">
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-sm">
+                                                <input
+                                                        th:value="*{subchapterName}"
+                                                        id="subchapterName"
+                                                        name="subchapterName"
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="SubChapter Name">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-primary mx-2 btn-sm">Add</button>
+                                            <a href="/documents/add-subChapter"
+                                               class="btn btn-primary btn-sm">Cancel</a>
+                                        </td>
+
+                                    </tr>
+                                    <!--                                    todo add button below the ATA chapter dropdown to go to Add ATA Chapter page-->
+                                    <tr>
+                                        <td class="text-center small">
+                                            <small
+                                                    th:each="e: ${#fields.errors('ataChapterRefInput')}"
+                                                    th:text="${e}"
+                                                    id="ataChapterRefError"
+                                                    class="text-danger">
+                                            </small>
+                                        </td>
+                                        <td class="text-center small">
+                                            <small
+                                                    th:each="e: ${#fields.errors('ataSubCode')}"
+                                                    th:text="${e}"
+                                                    id="ataSubCodeError"
+                                                    class="text-danger">
+                                            </small>
+                                            <small th:if="${ataSubChapterExistsError}" id="ataSubChapterExistsError"
+                                                   class="text-danger">SubChapter already exists in DB!</small>
+                                        </td>
+                                        <td class="text-center small">
+                                            <small
+                                                    th:each="e: ${#fields.errors('subchapterName')}"
+                                                    th:text="${e}"
+                                                    id="subchapterNameError"
+                                                    class="text-danger">
+                                            </small>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!--3. EO Add Subchapter Tab-->
+
+                </div>
+            </div>
+
+            <!-- Success message display-->
+            <div class="toast" id="seed-ok" style="position: fixed; top: 15em; left: 50em;">
+
+                <div class="toast-header" style="background-color: lightcyan">
+                    <strong class="me-auto">AvioDesk says:</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+
+                <div class="toast-body " style="background-color: lightcyan">
+                    Successfully added!
+                </div>
+            </div>
+
+            <script th:if="${seedOk}">
+                $(document).ready(function () {
+                    $('.toast').toast('show');
+                });
+            </script>
+            <!-- EO Success message display-->
+
+
+        </div>
+        <!-- End Main -->
+    </div>
+
+
+</div>
+
+<!-- Optional JavaScript-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"-->
+<!--        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"-->
+<!--        crossorigin="anonymous"></script>-->
+
+</body>
+
+<script src="/js/sidebar-link-highlight.js"></script>
+
+
+</html>

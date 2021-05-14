@@ -1,0 +1,100 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+
+    <div class="col-3" id="side-nav">
+
+
+        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Board</span>
+        </h5>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>
+                    <a th:href="@{/home}" class="link-muted" id="home">Home</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>My Tests</span>
+        </h5>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>
+                    <a th:href="@{/tests/upcoming}" class="link-muted" id="upcomming">Upcoming</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a th:href="@{/tests/history}" class="link-muted">Test History</a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Test Management</span>
+        </h5>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>
+                    <a th:href="@{/tests/add}" class="link-muted" id="">Add Test</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a th:href="@{/tests/manage}" class="link-muted">View/Edit Tests</a>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Question Management</span>
+        </h5>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>
+                    <a th:href="@{/questions/add}" class="link-muted" id="questions-add">Add Question</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a th:href="@{/questions/manage}" class="link-muted" id="qustions-manage">View/Edit Questions</a>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+
+        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Document Management</span>
+        </h5>
+        <table class="table" id="ducument-management">
+            <tbody>
+            <tr>
+                <td>
+                    <div class="dropdown">
+                        <a th:href="@{/ata-chapters}" class="link-muted" id="ata-chapters">Add/Edit Reference</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</th:block>

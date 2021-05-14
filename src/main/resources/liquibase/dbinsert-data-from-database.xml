@@ -1,0 +1,394 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="a (generated)" id="1619320239201-1">
+        <insert tableName="articles">
+            <column name="id" valueNumeric="1"/>
+            <column name="article_text" value="‐ A standard automatic start that includes up to two start attempts, is considered one cycle&#10;‐ For ground starts (automatic or manual), a 35 s pause is required between successive cycles&#10;‐ A 15 min cooling period is required, subsequent to three failed cycles, or 15 min of continuous or&#10;cumulated crank&#10;‐ The starter must not be run when N2 is above 20 %."/>
+            <column name="document_date"/>
+            <column name="ducument_revision"/>
+            <column name="full_reference_path" value="LIM-ENG P 4/8"/>
+            <column name="image_url"/>
+            <column name="title" value="STARTER"/>
+            <column name="ata_sub_chapter"/>
+            <column name="ata_chapter"/>
+            <column name="document"/>
+            <column name="doc_sub_chapter"/>
+        </insert>
+        <insert tableName="articles">
+            <column name="id" valueNumeric="2"/>
+            <column name="article_text" value="OIL TEMPERATURE&#10;Maximum continuous temperature......................................................................................... 155 °C&#10;Maximum transient temperature (15 min).............................................................................. 165 °C&#10;Minimum starting temperature................................................................................................ -40 °C&#10;Minimum temperature before IDLE is exceeded..................................................................... -10 °C&#10;Minimum temperature before takeoff....................................................................................... 50 °C&#10;OIL QUANTITY&#10;Minimum oil quantity..................... Refer to PRO-NOR-SOP-04 Before Walkaround - ECAM Pages&#10;MINIMUM OIL PRESSURE&#10;Minimum oil pressure............................................................................................................. 60 PSI"/>
+            <column name="document_date"/>
+            <column name="ducument_revision"/>
+            <column name="full_reference_path" value="LIM-ENG P 3/8"/>
+            <column name="image_url"/>
+            <column name="title" value="OIL"/>
+            <column name="ata_sub_chapter"/>
+            <column name="ata_chapter"/>
+            <column name="document"/>
+            <column name="doc_sub_chapter"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-2">
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="1"/>
+            <column name="ata_code" valueNumeric="20"/>
+            <column name="chapter_name" value="Aircraft General"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="2"/>
+            <column name="ata_code" valueNumeric="21"/>
+            <column name="chapter_name" value="Air Conditioning / Pressurization / Ventilation"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="3"/>
+            <column name="ata_code" valueNumeric="22"/>
+            <column name="chapter_name" value="Auto Flight"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="4"/>
+            <column name="ata_code" valueNumeric="23"/>
+            <column name="chapter_name" value="Communications"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="5"/>
+            <column name="ata_code" valueNumeric="24"/>
+            <column name="chapter_name" value="Electrical"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="6"/>
+            <column name="ata_code" valueNumeric="25"/>
+            <column name="chapter_name" value="Equipment"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="7"/>
+            <column name="ata_code" valueNumeric="26"/>
+            <column name="chapter_name" value="Fire Protection"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="8"/>
+            <column name="ata_code" valueNumeric="27"/>
+            <column name="chapter_name" value="Flight Controls"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="9"/>
+            <column name="ata_code" valueNumeric="28"/>
+            <column name="chapter_name" value="Fuel"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="10"/>
+            <column name="ata_code" valueNumeric="29"/>
+            <column name="chapter_name" value="Hydraulic"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="11"/>
+            <column name="ata_code" valueNumeric="30"/>
+            <column name="chapter_name" value="Ice and Rain Protection"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="12"/>
+            <column name="ata_code" valueNumeric="31"/>
+            <column name="chapter_name" value="Indicating/Recording Systems"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="13"/>
+            <column name="ata_code" valueNumeric="32"/>
+            <column name="chapter_name" value="Landing Gear"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="14"/>
+            <column name="ata_code" valueNumeric="33"/>
+            <column name="chapter_name" value="Lights"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="15"/>
+            <column name="ata_code" valueNumeric="34"/>
+            <column name="chapter_name" value="Navigation"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="16"/>
+            <column name="ata_code" valueNumeric="35"/>
+            <column name="chapter_name" value="Oxygen"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="17"/>
+            <column name="ata_code" valueNumeric="36"/>
+            <column name="chapter_name" value="Pneumatic"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="18"/>
+            <column name="ata_code" valueNumeric="38"/>
+            <column name="chapter_name" value="Water / Waste"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="19"/>
+            <column name="ata_code" valueNumeric="45"/>
+            <column name="chapter_name" value="Maintenance System"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="20"/>
+            <column name="ata_code" valueNumeric="46"/>
+            <column name="chapter_name" value="Information Systems"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="21"/>
+            <column name="ata_code" valueNumeric="49"/>
+            <column name="chapter_name" value="APU"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="22"/>
+            <column name="ata_code" valueNumeric="52"/>
+            <column name="chapter_name" value="Doors"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="23"/>
+            <column name="ata_code" valueNumeric="56"/>
+            <column name="chapter_name" value="Cockpit Windows"/>
+        </insert>
+        <insert tableName="chapters">
+            <column name="id" valueNumeric="24"/>
+            <column name="ata_code" valueNumeric="70"/>
+            <column name="chapter_name" value="Engines"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-3">
+        <insert tableName="document_sub_chapters">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="aircraft systems"/>
+            <column name="document" valueNumeric="1"/>
+        </insert>
+        <insert tableName="document_sub_chapters">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="procedures"/>
+            <column name="document" valueNumeric="1"/>
+        </insert>
+        <insert tableName="document_sub_chapters">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="limitations"/>
+            <column name="document" valueNumeric="1"/>
+        </insert>
+        <insert tableName="document_sub_chapters">
+            <column name="id" valueNumeric="4"/>
+            <column name="name" value="performance"/>
+            <column name="document" valueNumeric="1"/>
+        </insert>
+        <insert tableName="document_sub_chapters">
+            <column name="id" valueNumeric="5"/>
+            <column name="name" value="other..."/>
+            <column name="document" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-4">
+        <insert tableName="documents">
+            <column name="id" valueNumeric="5"/>
+            <column name="name" value="afl"/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="4"/>
+            <column name="name" value="cdl"/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="fcom"/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="fctm"/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="mel"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-5">
+        <insert tableName="questions">
+            <column name="id" valueNumeric="1"/>
+            <column name="alt_answer_1" value="10%"/>
+            <column name="alt_answer_2" value="12%"/>
+            <column name="alt_answer_3" value="25%"/>
+            <column name="alt_answer_4" value="8%"/>
+            <column name="correct_answer" value="20%"/>
+            <column name="full_reference_path"/>
+            <column name="name" value="Starter N2 limitation"/>
+            <column name="question" value="What is the maximum N2 for starter engagement (NEO)?"/>
+            <column name="article_id" valueNumeric="1"/>
+            <column name="ata_subchapter"/>
+            <column name="ata_chapter"/>
+            <column name="document"/>
+            <column name="document_subchapter"/>
+        </insert>
+        <insert tableName="questions">
+            <column name="id" valueNumeric="2"/>
+            <column name="alt_answer_1" value="165"/>
+            <column name="alt_answer_2" value="135"/>
+            <column name="alt_answer_3" value="160"/>
+            <column name="alt_answer_4" value="152"/>
+            <column name="correct_answer" value="151"/>
+            <column name="full_reference_path"/>
+            <column name="name" value="Oil temperature limitation"/>
+            <column name="question" value="What is the maximum OIL temperature for the  NEO aircraft (C)?"/>
+            <column name="article_id" valueNumeric="2"/>
+            <column name="ata_subchapter"/>
+            <column name="ata_chapter"/>
+            <column name="document"/>
+            <column name="document_subchapter"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-6">
+        <insert tableName="roles">
+            <column name="id" valueNumeric="1"/>
+            <column name="role" value="ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="id" valueNumeric="2"/>
+            <column name="role" value="USER"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-7">
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="1"/>
+            <column name="ata_subcode" valueNumeric="10"/>
+            <column name="subchapter_name" value="Overview"/>
+            <column name="ata_chapter" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="2"/>
+            <column name="ata_subcode" valueNumeric="20"/>
+            <column name="subchapter_name" value="Description"/>
+            <column name="ata_chapter" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="3"/>
+            <column name="ata_subcode" valueNumeric="30"/>
+            <column name="subchapter_name" value="Ground Handling"/>
+            <column name="ata_chapter" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="4"/>
+            <column name="ata_subcode" valueNumeric="40"/>
+            <column name="subchapter_name" value="Ground Clearance Diagram"/>
+            <column name="ata_chapter" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="5"/>
+            <column name="ata_subcode" valueNumeric="50"/>
+            <column name="subchapter_name" value="Landing Geometry"/>
+            <column name="ata_chapter" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="6"/>
+            <column name="ata_subcode" valueNumeric="60"/>
+            <column name="subchapter_name" value="Visual Ground Geometry"/>
+            <column name="ata_chapter" valueNumeric="1"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="7"/>
+            <column name="ata_subcode" valueNumeric="10"/>
+            <column name="subchapter_name" value="Air Conditioning"/>
+            <column name="ata_chapter" valueNumeric="2"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="8"/>
+            <column name="ata_subcode" valueNumeric="20"/>
+            <column name="subchapter_name" value="Pressurization"/>
+            <column name="ata_chapter" valueNumeric="2"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="9"/>
+            <column name="ata_subcode" valueNumeric="30"/>
+            <column name="subchapter_name" value="Ventilation"/>
+            <column name="ata_chapter" valueNumeric="2"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="10"/>
+            <column name="ata_subcode" valueNumeric="40"/>
+            <column name="subchapter_name" value="Cargo"/>
+            <column name="ata_chapter" valueNumeric="2"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="11"/>
+            <column name="ata_subcode" valueNumeric="10"/>
+            <column name="subchapter_name" value="Auto Flight - General"/>
+            <column name="ata_chapter" valueNumeric="3"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="12"/>
+            <column name="ata_subcode" valueNumeric="20"/>
+            <column name="subchapter_name" value="Auto Flight - Flight Management"/>
+            <column name="ata_chapter" valueNumeric="3"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="13"/>
+            <column name="ata_subcode" valueNumeric="30"/>
+            <column name="subchapter_name" value="Auto Flight - Flight Guidance"/>
+            <column name="ata_chapter" valueNumeric="3"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="14"/>
+            <column name="ata_subcode" valueNumeric="40"/>
+            <column name="subchapter_name" value="Auto Flight - Flight Augmentation"/>
+            <column name="ata_chapter" valueNumeric="3"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="15"/>
+            <column name="ata_subcode" valueNumeric="45"/>
+            <column name="subchapter_name" value="Auto Flight - AOC Functions"/>
+            <column name="ata_chapter" valueNumeric="3"/>
+        </insert>
+        <insert tableName="sub_chapters">
+            <column name="id" valueNumeric="16"/>
+            <column name="ata_subcode" valueNumeric="46"/>
+            <column name="subchapter_name" value="Auto Flight - Print Interface"/>
+            <column name="ata_chapter" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-8">
+        <insert tableName="tests">
+            <column name="id" valueNumeric="1"/>
+            <column name="date_created" valueDate="2021-04-25"/>
+            <column name="due_date" valueDate="2021-04-25"/>
+            <column name="name" value="Engines"/>
+            <column name="test_status" value="ACTIVE"/>
+            <column name="created_by_id"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-9">
+        <insert tableName="tests_questions">
+            <column name="question_id" valueNumeric="1"/>
+            <column name="test_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="tests_questions">
+            <column name="question_id" valueNumeric="1"/>
+            <column name="test_id" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-10">
+        <insert tableName="users">
+            <column name="id" valueNumeric="1"/>
+            <column name="email"/>
+            <column name="full_name" value="Petar Petkov"/>
+            <column name="password" value="$2a$10$l9wngYa1tdDlansodDYO/u3.Yi3W6342TPUfjRCDj1gQLjMfMQ1Ca"/>
+            <column name="username" value="admin"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueNumeric="2"/>
+            <column name="email"/>
+            <column name="full_name" value="Elitsa Deyanova"/>
+            <column name="password" value="$2a$10$/C8nq9rX1t6kbBLIQJIwr.uwtRyF3W7NovFBG0PkZcOF708ZVY6xO"/>
+            <column name="username" value="user"/>
+        </insert>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320239201-11">
+        <insert tableName="users_roles">
+            <column name="user_entity_id" valueNumeric="1"/>
+            <column name="roles_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_entity_id" valueNumeric="1"/>
+            <column name="roles_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="users_roles">
+            <column name="user_entity_id" valueNumeric="2"/>
+            <column name="roles_id" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

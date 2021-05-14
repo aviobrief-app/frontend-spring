@@ -1,0 +1,440 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="a (generated)" id="1619320063329-1">
+        <createTable tableName="active_test_backup">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="due_date" type="date"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_entity_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-2">
+        <createTable tableName="articles">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="article_text" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="document_date" type="date"/>
+            <column name="ducument_revision" type="VARCHAR(255)"/>
+            <column name="full_reference_path" type="VARCHAR(255)"/>
+            <column name="image_url" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="ata_sub_chapter" type="BIGINT"/>
+            <column name="ata_chapter" type="BIGINT"/>
+            <column name="document" type="BIGINT"/>
+            <column name="doc_sub_chapter" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-3">
+        <createTable tableName="chapters">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ata_code" type="INT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="chapter_name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-4">
+        <createTable tableName="completed_tests">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="due_date" type="date"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="parent_test_id" type="BIGINT"/>
+            <column name="time_completed" type="datetime"/>
+            <column name="user" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-5">
+        <createTable tableName="document_sub_chapters">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="document" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-6">
+        <createTable tableName="documents">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-7">
+        <createTable tableName="questions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="alt_answer_1" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alt_answer_2" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alt_answer_3" type="VARCHAR(255)"/>
+            <column name="alt_answer_4" type="VARCHAR(255)"/>
+            <column name="correct_answer" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_reference_path" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="question" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="article_id" type="BIGINT"/>
+            <column name="ata_subchapter" type="BIGINT"/>
+            <column name="ata_chapter" type="BIGINT"/>
+            <column name="document" type="BIGINT"/>
+            <column name="document_subchapter" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-8">
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-9">
+        <createTable tableName="sub_chapters">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ata_subcode" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subchapter_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ata_chapter" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-10">
+        <createTable tableName="submitted_questions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="alt_answer_1" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alt_answer_2" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alt_answer_3" type="VARCHAR(255)"/>
+            <column name="alt_answer_4" type="VARCHAR(255)"/>
+            <column name="is_correct" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="correct_answer" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_reference_path" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="submitted_answer" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-11">
+        <createTable tableName="test_entity_test_tag_enums">
+            <column name="test_entity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test_tag_enums" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-12">
+        <createTable tableName="tests">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="date_created" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test_status" type="VARCHAR(255)"/>
+            <column name="created_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-13">
+        <createTable tableName="tests_questions">
+            <column name="question_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-14">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="full_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-15">
+        <createTable tableName="users_roles">
+            <column name="user_entity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roles_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-16">
+        <createTable tableName="users_test_entities">
+            <column name="user_entity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test_entities_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-17">
+        <createIndex indexName="FK3djk1twtrppkburvc01slsfcb" tableName="questions">
+            <column name="ata_chapter"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-18">
+        <createIndex indexName="FK3h0vbew9l5gbr3xyxsqwtrcrh" tableName="active_test_backup">
+            <column name="user_entity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-19">
+        <createIndex indexName="FK3j4ylhej9e6gcq4amf34wan5r" tableName="document_sub_chapters">
+            <column name="document"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-20">
+        <createIndex indexName="FK466ikn12omq48li8djw98apja" tableName="test_entity_test_tag_enums">
+            <column name="test_entity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-21">
+        <createIndex indexName="FK5n3tgfffnxkrjswr0qtugwfpt" tableName="questions">
+            <column name="article_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-22">
+        <createIndex indexName="FK79wwhlrhjhet00ij3ju6qw8g4" tableName="tests">
+            <column name="created_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-23">
+        <createIndex indexName="FK7v417qhe0i2m9h8njggvciv00" tableName="users_roles">
+            <column name="user_entity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-24">
+        <createIndex indexName="FK83tu1fnrxyt93u6mqlg3nmna1" tableName="tests_questions">
+            <column name="test_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-25">
+        <createIndex indexName="FK8orqsf7ax4qoax77fgv26cgqh" tableName="completed_tests">
+            <column name="user"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-26">
+        <createIndex indexName="FK91feqtlss4rsqay58d6aokqot" tableName="sub_chapters">
+            <column name="ata_chapter"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-27">
+        <createIndex indexName="FK9qjnejgn6r2vjo3whnqll9dqc" tableName="articles">
+            <column name="ata_sub_chapter"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-28">
+        <createIndex indexName="FKa62j07k5mhgifpp955h37ponj" tableName="users_roles">
+            <column name="roles_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-29">
+        <createIndex indexName="FKe4a4x762ipbfsb7o5vg43motj" tableName="articles">
+            <column name="doc_sub_chapter"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-30">
+        <createIndex indexName="FKfmfqfrlj0karwq42udeolvxd7" tableName="articles">
+            <column name="document"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-31">
+        <createIndex indexName="FKijk521wl2oh1fwlleeq4ajf3t" tableName="submitted_questions">
+            <column name="test"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-32">
+        <createIndex indexName="FKkuqftlqqbk611htppkuf748oo" tableName="questions">
+            <column name="document"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-33">
+        <createIndex indexName="FKn4c75c8hud4wkh9epdlvrwrht" tableName="tests_questions">
+            <column name="question_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-34">
+        <createIndex indexName="FKng2uik3y7h9svingt3ptr3xh3" tableName="articles">
+            <column name="ata_chapter"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-35">
+        <createIndex indexName="FKp8rfat53jwd8wx9og921hnu0i" tableName="users_test_entities">
+            <column name="user_entity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-36">
+        <createIndex indexName="FKrlpasdrhhhf45ynuhhcq95l8p" tableName="questions">
+            <column name="ata_subchapter"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-37">
+        <createIndex indexName="FKsd1vd52dnurdhrwibumy544at" tableName="questions">
+            <column name="document_subchapter"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-38">
+        <createIndex indexName="UK_2gornjc86uajoimhlkmkmhqi5" tableName="users_test_entities" unique="true">
+            <column name="test_entities_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-39">
+        <createIndex indexName="UK_5ebai8r6qf3gbcb0ymt9i9e7b" tableName="active_test_backup" unique="true">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-40">
+        <createIndex indexName="UK_6dotkott2kjsp8vw4d0m25fb7" tableName="users" unique="true">
+            <column name="email"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-41">
+        <createIndex indexName="UK_f2ja8c7khxmlkq1y8c1gfchbf" tableName="documents" unique="true">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-42">
+        <createIndex indexName="UK_lynqts1dwsv4wxtgh0jfbyeaa" tableName="tests" unique="true">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-43">
+        <createIndex indexName="UK_r43af9ap4edm43mmtq01oddj6" tableName="users" unique="true">
+            <column name="username"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-44">
+        <addForeignKeyConstraint baseColumnNames="ata_chapter" baseTableName="questions" constraintName="FK3djk1twtrppkburvc01slsfcb" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="chapters" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-45">
+        <addForeignKeyConstraint baseColumnNames="user_entity_id" baseTableName="active_test_backup" constraintName="FK3h0vbew9l5gbr3xyxsqwtrcrh" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-46">
+        <addForeignKeyConstraint baseColumnNames="document" baseTableName="document_sub_chapters" constraintName="FK3j4ylhej9e6gcq4amf34wan5r" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="documents" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-47">
+        <addForeignKeyConstraint baseColumnNames="test_entity_id" baseTableName="test_entity_test_tag_enums" constraintName="FK466ikn12omq48li8djw98apja" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="tests" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-48">
+        <addForeignKeyConstraint baseColumnNames="article_id" baseTableName="questions" constraintName="FK5n3tgfffnxkrjswr0qtugwfpt" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="articles" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-49">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="tests" constraintName="FK79wwhlrhjhet00ij3ju6qw8g4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-50">
+        <addForeignKeyConstraint baseColumnNames="user_entity_id" baseTableName="users_roles" constraintName="FK7v417qhe0i2m9h8njggvciv00" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-51">
+        <addForeignKeyConstraint baseColumnNames="test_id" baseTableName="tests_questions" constraintName="FK83tu1fnrxyt93u6mqlg3nmna1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="questions" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-52">
+        <addForeignKeyConstraint baseColumnNames="user" baseTableName="completed_tests" constraintName="FK8orqsf7ax4qoax77fgv26cgqh" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-53">
+        <addForeignKeyConstraint baseColumnNames="ata_chapter" baseTableName="sub_chapters" constraintName="FK91feqtlss4rsqay58d6aokqot" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="chapters" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-54">
+        <addForeignKeyConstraint baseColumnNames="ata_sub_chapter" baseTableName="articles" constraintName="FK9qjnejgn6r2vjo3whnqll9dqc" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="sub_chapters" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-55">
+        <addForeignKeyConstraint baseColumnNames="roles_id" baseTableName="users_roles" constraintName="FKa62j07k5mhgifpp955h37ponj" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="roles" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-56">
+        <addForeignKeyConstraint baseColumnNames="test_entities_id" baseTableName="users_test_entities" constraintName="FKe47v1239496qi0wl5r00hqlsg" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="tests" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-57">
+        <addForeignKeyConstraint baseColumnNames="doc_sub_chapter" baseTableName="articles" constraintName="FKe4a4x762ipbfsb7o5vg43motj" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="document_sub_chapters" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-58">
+        <addForeignKeyConstraint baseColumnNames="document" baseTableName="articles" constraintName="FKfmfqfrlj0karwq42udeolvxd7" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="documents" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-59">
+        <addForeignKeyConstraint baseColumnNames="test" baseTableName="submitted_questions" constraintName="FKijk521wl2oh1fwlleeq4ajf3t" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="completed_tests" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-60">
+        <addForeignKeyConstraint baseColumnNames="document" baseTableName="questions" constraintName="FKkuqftlqqbk611htppkuf748oo" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="documents" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-61">
+        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="tests_questions" constraintName="FKn4c75c8hud4wkh9epdlvrwrht" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="tests" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-62">
+        <addForeignKeyConstraint baseColumnNames="ata_chapter" baseTableName="articles" constraintName="FKng2uik3y7h9svingt3ptr3xh3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="chapters" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-63">
+        <addForeignKeyConstraint baseColumnNames="user_entity_id" baseTableName="users_test_entities" constraintName="FKp8rfat53jwd8wx9og921hnu0i" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-64">
+        <addForeignKeyConstraint baseColumnNames="ata_subchapter" baseTableName="questions" constraintName="FKrlpasdrhhhf45ynuhhcq95l8p" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="sub_chapters" validate="true"/>
+    </changeSet>
+    <changeSet author="a (generated)" id="1619320063329-65">
+        <addForeignKeyConstraint baseColumnNames="document_subchapter" baseTableName="questions" constraintName="FKsd1vd52dnurdhrwibumy544at" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="document_sub_chapters" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

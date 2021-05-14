@@ -1,0 +1,98 @@
+[
+  {
+    "ataCode": "20",
+    "name": "Aircraft General"
+  },
+  {
+    "ataCode": "21",
+    "name": "Air Conditioning / Pressurization / Ventilation"
+  },
+  {
+    "ataCode": "22",
+    "name": "Auto Flight"
+  },
+  {
+    "ataCode": "23",
+    "name": "Communications"
+  },
+  {
+    "ataCode": "24",
+    "name": "Electrical"
+  },
+  {
+    "ataCode": "25",
+    "name": "Equipment"
+  },
+  {
+    "ataCode": "26",
+    "name": "Fire Protection"
+  },
+  {
+    "ataCode": "27",
+    "name": "Flight Controls"
+  },
+  {
+    "ataCode": "28",
+    "name": "Fuel"
+  },
+  {
+    "ataCode": "29",
+    "name": "Hydraulic"
+  },
+  {
+    "ataCode": "30",
+    "name": "Ice and Rain Protection"
+  },
+  {
+    "ataCode": "31",
+    "name": "Indicating/Recording Systems"
+  },
+  {
+    "ataCode": "32",
+    "name": "Landing Gear"
+  },
+  {
+    "ataCode": "33",
+    "name": "Lights"
+  },
+  {
+    "ataCode": "34",
+    "name": "Navigation"
+  },
+  {
+    "ataCode": "35",
+    "name": "Oxygen"
+  },
+  {
+    "ataCode": "36",
+    "name": "Pneumatic"
+  },
+  {
+    "ataCode": "38",
+    "name": "Water / Waste"
+  },
+  {
+    "ataCode": "45",
+    "name": "Maintenance System"
+  },
+  {
+    "ataCode": "46",
+    "name": "Information Systems"
+  },
+  {
+    "ataCode": "49",
+    "name": "APU"
+  },
+  {
+    "ataCode": "52",
+    "name": "Doors"
+  },
+  {
+    "ataCode": "56",
+    "name": "Cockpit Windows"
+  },
+  {
+    "ataCode": "70",
+    "name": "Engines"
+  }
+]

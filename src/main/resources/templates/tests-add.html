@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+    <!-- Bootstrap Css -->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
+
+    <!--    <link rel="stylesheet" href="style.css">-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+    <title>AD - Add Test</title>
+
+</head>
+
+<body>
+
+<!-- Navbar-Main -->
+<th:block th:include="~{fragments/nav-main-fragment}"></th:block>
+<!-- Navbar-Main -->
+
+<!-- Container - Main -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- SideNav -->
+        <th:block th:include="~{fragments/side-nav-fragment}"></th:block>
+        <!-- End SideNav -->
+
+        <!-- Main -->
+
+        <!-- left Side-->
+        <div class="col-5 bg-light border border-1" id="add-test-pane">
+
+            <!-- Test Info Panel-->
+            <div class="bg-light border border-1 p-3 mt-1">
+
+                <h5 class="text-muted">Test:</h5>
+                <div>
+                    <!-- Add Test Tab-->
+                    <div class="row">
+
+                        <div class="col-sm-6 input-group-sm">
+                            <label class="text small" for="test-name">Name: (Required)</label>
+                            <input type="text" class="form-control" id="test-name">
+                            <div class="text small text-danger" id="test-name-err"></div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-5 input-group-sm">
+                            <label class="text small" for="due-date">Due Date: (Required)</label>
+                            <input type="date"
+                                   th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+                                   class="form-control"
+                                   id="due-date">
+                            <div class="text small text-danger" id="due-date-err"></div>
+
+                        </div>
+                        <div class="col-sm-5 input-group-sm">
+                            <label for="test-tags" class="text small">Test Tags</label>
+                            <select id="test-tags" class="form-select">
+                                <option selected>Select...</option>
+                                <option
+                                        th:each="t : ${T(com.petkov.spr_final_1.model.app_entity.enumeration.TestTagEnum).values()}"
+                                        th:value="${t}"
+                                        th:text="${t}">Select Tag
+                                </option>
+                            </select>
+
+                        </div>
+                        <div class="col-sm-2 input-group-sm" id="add-test-tag">
+                            <div>&nbsp;</div>
+                            <button class="btn btn-sm btn-secondary">Tag</button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+
+                        <h6 class="text-muted">Tags:</h6>
+                        <!-- Tab Tab-->
+                        <div class="col-sm-11 border border-1 rounded m-2" id="tags-container">
+
+
+
+
+                        </div>
+                        <!-- EO Tab Tab-->
+
+                        <div class="col mt-2 mx-4">
+                            <div class="col-sm-3 float-end">
+                                <button
+                                        id="add-test"
+                                        type="submit"
+                                        class="btn btn-primary btn-sm"
+                                        style="width: 100%">
+                                    Add Test
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!-- EO Add Test Tab-->
+                </div>
+
+
+            </div>
+            <!-- EO Test Info Panel-->
+
+
+            <!-- Questions Panel-->
+            <div class="bg-white border border-1 p-3 mt-1">
+
+                <h5 class="text-muted">Questions:</h5>
+                <!-- TEST Question List-->
+                <div class="row mt-1 border-1 p-1" id="question-list">
+
+
+                </div>
+                <!-- EO TEST Question List-->
+            </div>
+            <!-- EO Questions Panel-->
+
+
+        </div>
+        <!-- EO left Side-->
+
+        <!-- right Side-->
+        <div class="col-4 bg-light border border-1" id="questions-select-pane">
+
+            <!-- Collapsable Container-->
+            <div class="row mt-2">
+                <p>
+                    <button class="btn btn-secondary btn-sm" id="searchbar-toggle"
+                            style="width: 100%">
+                        Show search options
+                    </button>
+                </p>
+                <div class="collapse" id="search-container">
+                    <div class="bg-light">
+                        <!-- Search container-->
+                        <div class="bg-light border border-2 border-secondary rounded px-2 py-1">
+
+                            <!-- ATA Tab-->
+                            <div class="row">
+
+                                <div class="col shadow rounded mx-2 mt-0 p-2 bg-light ">
+                                    <div class="row ">
+
+                                        <div class="col-sm-6">
+                                            <label for="ataChapterRefInput" class="form-label text-start small">
+                                                ATA Chapter:
+                                            </label>
+                                            <div class="input-group input-group-sm">
+                                                <select
+                                                        id="ataChapterRefInput"
+                                                        name="ataChapterRefInput"
+                                                        class="form-select"
+                                                        aria-label="Select ATA Chapter">
+                                                    <option>
+                                                        <!--                                            selected th:text="*{ataChapterRefInput}"-->
+                                                        Select...
+                                                    </option>
+                                                    <option>
+                                                        <!--                                        th:each="a : ${ataDBList}"-->
+                                                        <!--                                        th:text="|${a.ataCode} - ${a.name}|">-->
+                                                        One
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label for="ataSubChapterRef" class="form-label text-start small">
+                                                ATA Sub Chapter:
+                                            </label>
+                                            <div class="input-group input-group-sm">
+                                                <select
+                                                        id="ataSubChapterRef"
+                                                        name="ataSubChapterRef"
+                                                        class="form-select"
+                                                        aria-label="Select ATA Sub Chapter">
+                                                    <option>
+                                                        <!--                                            selected th:text="*{ataChapterRefInput}"-->
+                                                        Select...
+                                                    </option>
+                                                    <option>
+                                                        <!--                                        th:each="a : ${ataDBList}"-->
+                                                        <!--                                        th:text="|${a.ataCode} - ${a.name}|">-->
+                                                        One
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!-- EO ATA Tab-->
+
+                            <!-- Document Tab-->
+                            <div class="row">
+                                <div class="col shadow rounded mx-2 mt-2 p-2 bg-light ">
+                                    <div class="row ">
+
+                                        <div class="col-sm-6">
+                                            <label for="document" class="form-label text-start small">
+                                                Document:
+                                            </label>
+                                            <div class="input-group input-group-sm">
+                                                <select
+                                                        id="document"
+                                                        name="document"
+                                                        class="form-select"
+                                                        aria-label="Select document">
+                                                    <option>
+                                                        <!--                                            selected th:text="*{ataChapterRefInput}"-->
+                                                        Select...
+                                                    </option>
+                                                    <option>
+                                                        <!--                                        th:each="a : ${ataDBList}"-->
+                                                        <!--                                        th:text="|${a.ataCode} - ${a.name}|">-->
+                                                        One
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label for="documentSubchapter" class="form-label text-start small">
+                                                Document Subchapter:
+                                            </label>
+                                            <div class="input-group input-group-sm">
+                                                <select
+                                                        id="documentSubchapter"
+                                                        name="documentSubchapter"
+                                                        class="form-select"
+                                                        aria-label="Select Document Subchapter">
+                                                    <option>
+                                                        <!--                                            selected th:text="*{ataChapterRefInput}"-->
+                                                        Select...
+                                                    </option>
+                                                    <option>
+                                                        <!--                                        th:each="a : ${ataDBList}"-->
+                                                        <!--                                        th:text="|${a.ataCode} - ${a.name}|">-->
+                                                        One
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- EO Document Tab-->
+
+                            <!-- Search Tab-->
+                            <div class="row">
+                                <div class="col shadow rounded mx-2 mt-2 p-2 bg-light ">
+
+                                    <div class="row">
+
+                                        <div class="col-sm-3">
+                                            <div class="d-inline float-end">
+                                                Search Bar
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-9">
+                                            <div class="">
+                                                <div class="input-group-sm">
+                                                    <input type="text" class="form-control" aria-label="Search input"
+                                                           style="width: 100%">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- EO Search Tab-->
+                        </div>
+                        <!-- EO Search container-->
+                    </div>
+                </div>
+            </div>
+            <!-- EO Collapsable Container-->
+
+
+            <!-- Question Container-->
+            <div class="row mt-1 border-1 p-1" id="questions-container">
+
+                <!--                &lt;!&ndash; Question Tab&ndash;&gt;-->
+                <!--                <div class="row">-->
+
+                <!--                    <div class="col-sm-12 shadow rounded  mx-2 p-1  bg-light ">-->
+
+                <!--                        <div class="input-group">-->
+                <!--                            <button class="input-group-text " id="add-button2">-->
+                <!--                                <-->
+                <!--                            </button>-->
+                <!--                            <div class="col-sm-10 p-2 border border-1 flex-grow-1">-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col text small fw-bold mb-1 ">-->
+                <!--                                     Q: What is the maximum N2 for starter engagement (NEO) ?-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col text text-truncate">-->
+                <!--                                        FCOM - Limitations-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col text  text-truncate mx-2">-->
+                <!--                                        Aircraft General-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+
+                <!--                            </div>-->
+                <!--                        </div>-->
+
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                &lt;!&ndash; EO Question Tab&ndash;&gt;-->
+
+            </div>
+            <!-- EO Question Container-->
+
+        </div>
+        <!-- EO right Side-->
+
+    </div>
+
+    <!-- End Main -->
+
+    <!-- Success message display-->
+
+    <!-- EO Success message display-->
+</div>
+
+
+</body>
+
+<script src="/js/sidebar-link-highlight.js"></script>
+<script src="/js/tests-add.js"></script>
+
+
+</html>

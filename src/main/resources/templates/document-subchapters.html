@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+    <!-- Bootstrap Css -->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
+
+    <!--    <link rel="stylesheet" href="style.css">-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+    <title>AD - Add Document</title>
+
+</head>
+
+<body>
+
+<!-- Navbar-Main -->
+<th:block th:include="~{fragments/nav-main-fragment}"></th:block>
+<!-- Navbar-Main -->
+
+<!-- Container - Main -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- SideNav -->
+        <th:block th:include="~{fragments/side-nav-fragment}"></th:block>
+        <!-- End SideNav -->
+
+        <!-- Main -->
+        <div class="col-9 bg-light ">
+
+            <div class="bg-light border border-1 p-3 mt-3">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/documents}" type="button" class="btn nav-link">
+                            Add Document
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active"
+                                id="chapter-tab" data-bs-toggle="tab" data-bs-target="#chapter"
+                                type="button" role="tab" aria-controls="chapter" aria-selected="true">
+                            Add Document Sub Chapter
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/ata-chapters}" type="button" class="btn nav-link">
+                            Add ATA Chapter
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/ata-subchapters}" type="button" class="btn nav-link">
+                            Add ATA SubChapter
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a th:href="@{/articles}" type="button" class="btn nav-link">
+                            Add Article
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+
+                    <!-- Add Document Subchapter Tab-->
+                    <div class="tab-pane fade my-3 show active"
+                         id="subChapter"
+                         role="tabpanel"
+                         aria-labelledby="subChapter-tab">
+
+                        <div class="mx-5">
+                            <form method="POST"
+                                  th:object="${documentSubchapterAddBindingModel}"
+                                  th:action="@{/document-subchapters}">
+
+                                <!-- row 1. Input-->
+                                <div class="row my-3">
+
+                                    <div class="col-sm-6">
+
+                                        <label for="document"
+                                               class="form-label text-start small">
+                                            Document Ref. (Required)
+                                        </label>
+
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="document"
+                                                    name="document"
+                                                    class="form-select"
+                                                    aria-label="Select Document Reference">
+
+                                                <option selected th:text="*{document}">Select...</option>
+                                                <option
+                                                        th:each="d : ${documentDBList}"
+                                                        th:text="${#strings.toUpperCase(d.name)}">
+                                                    One
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('document')}"
+                                             th:text="${e}"
+                                             id="documentError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-5">
+                                        <label for="name" class="form-label text-start small">
+                                            Name (Required)
+                                        </label>
+                                        <input th:value="*{name}"
+                                               id="name"
+                                               name="name"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="ex: Limitations">
+
+                                        <div th:each="e: ${#fields.errors('name')}"
+                                             th:text="${e}"
+                                             id="nameError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- row 1. Input-->
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- EO Add Document Subchapter Tab-->
+
+                </div>
+            </div>
+
+            <!-- Success message display-->
+            <div class="toast" id="seed-ok" style="position: fixed; top: 15em; left: 50em;">
+
+                <div class="toast-header" style="background-color: lightcyan">
+                    <strong class="me-auto">AvioDesk says:</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+
+                <div class="toast-body " style="background-color: lightcyan">
+                    Successfully added!
+                </div>
+            </div>
+
+            <script th:if="${seedOk}">
+                $(document).ready(function () {
+                    $('.toast').toast('show');
+                });
+            </script>
+            <!-- EO Success message display-->
+
+
+        </div>
+        <!-- End Main -->
+    </div>
+
+
+</div>
+
+<!-- Optional JavaScript-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"-->
+<!--        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"-->
+<!--        crossorigin="anonymous"></script>-->
+
+</body>
+
+<script src="/js/sidebar-link-highlight.js"></script>
+
+
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+    <!-- Bootstrap Css -->
+    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"-->
+    <!--          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">-->
+
+    <!--    <link rel="stylesheet" href="style.css">-->
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+    <title>AD - Add Document</title>
+
+</head>
+
+<body>
+
+<!-- Navbar-Main -->
+<th:block th:include="~{fragments/nav-main-fragment}"></th:block>
+<!-- Navbar-Main -->
+
+<!-- Container - Main -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- SideNav -->
+        <th:block th:include="~{fragments/side-nav-fragment}"></th:block>
+        <!-- End SideNav -->
+
+        <!-- Main -->
+        <div class="col-9 bg-light ">
+
+            <div class="bg-light border border-1 p-3 mt-3">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-link active"
+                             id="chapter-tab" data-bs-toggle="tab" data-bs-target="#chapter"
+                             type="button" role="tab" aria-controls="chapter" aria-selected="true">
+                            Add Question
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+
+                    <!-- Add Question Tab-->
+                    <div class="tab-pane fade my-3 show active"
+                         id="subChapter"
+                         role="tabpanel"
+                         aria-labelledby="subChapter-tab">
+
+                        <div class="mx-5">
+                            <form method="POST"
+                                  th:object="${questionAddBindingModel}"
+                                  th:action="@{/questions/add}">
+
+                                <h4 class="text-muted text-decoration-underline mt-4">Question:</h4>
+
+
+                                <!-- row 1. Name-->
+                                <div class="row my-3">
+
+                                    <div class="col-sm-6">
+
+                                        <label for="name"
+                                               class="form-label text-start small">
+                                            Title (Required)
+                                        </label>
+
+                                        <div class="input-group input-group-sm">
+                                            <input th:value="*{name}"
+                                                   id="name"
+                                                   name="name"
+                                                   type="text"
+                                                   class="form-control"
+                                                   placeholder="ex: A321 LVO wind">
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('name')}"
+                                             th:text="${e}"
+                                             id="nameError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- EO row 1. Name-->
+
+                                <!-- row 2. Question-->
+                                <div class="row my-3">
+                                    <div class="col-lg-12">
+                                        <label for="question" class="form-label small">Question (Required)</label>
+                                        <textarea style="height: auto"
+                                                  class="form-control"
+                                                  id="question"
+                                                  name="question"
+                                                  rows="2"
+                                                  placeholder="ex: Specify the wind limits for automatic landing on the A321 CEO aircraft"
+                                                  th:text="*{question}"></textarea>
+
+                                        <div th:each="e: ${#fields.errors('question')}"
+                                             th:text="${e}"
+                                             id="questionError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- EO row 2. Question-->
+
+                                <!-- row 2.1.Document, DocumentSubChapter , ATA, ATASubChapter Input-->
+                                <div class="row my-3">
+
+                                    <div class="col-sm-3">
+                                        <label for="document" class="form-label text-start small mb-3">
+                                            Document (Required)</label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="document"
+                                                    name="document"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{document}">VALUE></option>
+                                                <option th:each="d : ${documentDbList}"
+                                                        th:text="|${d.name}|">
+                                                    OPTIONS
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('document')}"
+                                             th:text="${e}"
+                                             id="documentRefError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="documentSubchapter" class="form-label text-start small mb-3">
+                                            Subchapter (Required)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="documentSubchapter"
+                                                    name="documentSubchapter"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{documentSubchapter}">VALUE></option>
+                                            </select>
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('documentSubchapter')}"
+                                             th:text="${e}"
+                                             id="documentSubchapterRefError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="chapter" class="form-label text-start small mb-3">
+                                            ATA Chapter (Required)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="chapter"
+                                                    name="chapter"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{chapter}">VALUE></option>
+                                                <option th:each="c : ${ataChapterDBList}"
+                                                        th:text="|${c.ataCode} - ${c.name}|">
+                                                    OPTIONS
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div th:each="e: ${#fields.errors('chapter')}"
+                                             th:text="${e}"
+                                             id="chapterRefError"
+                                             class="text-danger small">
+                                            Error
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="ataSubChapter" class="form-label text-start small mb-3">
+                                            ATA Sub Chapter (Optional)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="ataSubChapter"
+                                                    name="ataSubChapter"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{ataSubChapter}">VALUE></option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- row 2.1. EO Document, DocumentSubChapter , ATA, ATASubChapter Input-->
+
+                                <!-- row 2.2. References-->
+                                <div class="row my-3">
+
+                                    <div class="col-sm-6">
+                                        <label for="fullReferencePath"
+                                               class="form-label text-start small">
+                                            Full ref. path (Optional)
+                                        </label>
+
+                                        <div class="input-group input-group-sm">
+                                            <input th:value="*{fullReferencePath}"
+                                                   id="fullReferencePath"
+                                                   name="fullReferencePath"
+                                                   type="text"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+
+                                        <label for="article"
+                                               class="form-label text-start small">
+                                            Article (Optional)
+                                        </label>
+                                        <div class="input-group input-group-sm">
+                                            <select
+                                                    id="article"
+                                                    name="article"
+                                                    class="form-select"
+                                                    aria-label="Select ATA Sub Chapter">
+                                                <option th:text="*{article}">VALUE></option>
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- EO row 2.2. References-->
+
+                                    <h4 class="text-muted text-decoration-underline">Answers:</h4>
+
+                                    <!-- row 3. Correct Answer-->
+                                    <div class="row my-3">
+                                        <div class="col-lg-9">
+                                            <label for="correctAnswer" class="form-label small">
+                                                Correct answer (Required)
+                                            </label>
+                                            <textarea style="height: auto"
+                                                      class="form-control"
+                                                      id="correctAnswer"
+                                                      name="correctAnswer"
+                                                      rows="1"
+                                                      placeholder="Required..."
+                                                      th:text="*{correctAnswer}"></textarea>
+
+                                            <div th:each="e: ${#fields.errors('correctAnswer')}"
+                                                 th:text="${e}"
+                                                 id="correctAnswerError"
+                                                 class="text-danger small">
+                                                Error
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- row 3.EO Correct Answer-->
+
+                                    <!-- row 4. Alt Answer 1-->
+                                    <div class="row my-3">
+                                        <div class="col-lg-9">
+                                            <label for="altAnswer1" class="form-label small">
+                                                Alt answer 1 (Required)
+                                            </label>
+                                            <textarea style="height: auto"
+                                                      class="form-control"
+                                                      id="altAnswer1"
+                                                      name="altAnswer1"
+                                                      rows="1"
+                                                      placeholder="Required..."
+                                                      th:text="*{altAnswer1}"></textarea>
+
+                                            <div th:each="e: ${#fields.errors('altAnswer1')}"
+                                                 th:text="${e}"
+                                                 id="altAnswer1Error"
+                                                 class="text-danger small">
+                                                Error
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- row 4.EO  Alt Answer 1-->
+
+                                    <!-- row 5. Alt Answer 2-->
+                                    <div class="row my-3">
+                                        <div class="col-lg-9">
+                                            <label for="altAnswer2" class="form-label small">
+                                                Alt answer 2 (Required)
+                                            </label>
+                                            <textarea style="height: auto"
+                                                      class="form-control"
+                                                      id="altAnswer2"
+                                                      name="altAnswer2"
+                                                      rows="1"
+                                                      placeholder="Required..."
+                                                      th:text="*{altAnswer2}"></textarea>
+
+                                            <div th:each="e: ${#fields.errors('altAnswer1')}"
+                                                 th:text="${e}"
+                                                 id="altAnswer2Error"
+                                                 class="text-danger small">
+                                                Error
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- row 5.EO  Alt Answer 2-->
+
+                                    <!-- row 6. Alt Answer 3-->
+                                    <div class="row my-3">
+                                        <div class="col-lg-9">
+                                            <label for="altAnswer3" class="form-label small">
+                                                Alt answer 3 (Optional)
+                                            </label>
+                                            <textarea style="height: auto"
+                                                      class="form-control"
+                                                      id="altAnswer3"
+                                                      name="altAnswer3"
+                                                      rows="1"
+                                                      placeholder=""
+                                                      th:text="*{altAnswer3}"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- row 6.EO  Alt Answer 3-->
+
+                                    <!-- row 7. Alt Answer 4-->
+                                    <div class="row my-3">
+                                        <div class="col-lg-9">
+                                            <label for="altAnswer4" class="form-label small">
+                                                Alt answer 4 (Optional)
+                                            </label>
+                                            <textarea style="height: auto"
+                                                      class="form-control"
+                                                      id="altAnswer4"
+                                                      name="altAnswer4"
+                                                      rows="1"
+                                                      placeholder=""
+                                                      th:text="*{altAnswer4}"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- row 7.EO  Alt Answer 4-->
+
+
+                                    <div class="row my-5">
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="submit" class="btn btn-primary btn-sm" style="width: 100%">
+                                                Add Question
+                                            </button>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <a th:href="@{/questions/add}" class="btn btn-primary btn-sm"
+                                               style="width: 100%">
+                                                Cancel
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- EO Add Question Tab-->
+
+                </div>
+            </div>
+
+            <!-- Success message display-->
+            <div class="toast" id="seed-ok" style="position: fixed; top: 15em; left: 50em;">
+
+                <div class="toast-header" style="background-color: lightcyan">
+                    <strong class="me-auto">AvioDesk says:</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+
+                <div class="toast-body " style="background-color: lightcyan">
+                    Successfully added!
+                </div>
+            </div>
+
+            <script th:if="${seedOk}">
+                $(document).ready(function () {
+                    $('.toast').toast('show');
+                });
+            </script>
+            <!-- EO Success message display-->
+
+
+        </div>
+        <!-- End Main -->
+    </div>
+
+
+</div>
+
+<!-- Optional JavaScript-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"-->
+<!--        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"-->
+<!--        crossorigin="anonymous"></script>-->
+
+</body>
+
+<script src="/js/sidebar-link-highlight.js"></script>
+<script src="/js/questions-add.js"></script>
+
+
+</html>

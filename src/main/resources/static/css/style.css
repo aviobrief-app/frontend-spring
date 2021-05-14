@@ -1,0 +1,56 @@
+/*
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+} */
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* ::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}  */
+
+
+#navbar-main {
+    height: 3rem;
+    background-color: #e3e3e3;
+}
+
+#side-nav {
+    background-color:#444450;
+    /* color: white; */
+    height: calc(100vh - 63.98px);
+    overflow-y: scroll;
+    position: sticky;
+    top: 63.98px;
+}
+
+.link-muted{
+    color:#B3B6B7 ;
+    text-decoration: none;
+}
+
+.link-muted:hover{
+    color:white ;
+    text-decoration: none;
+}
+
+.link-selected{
+    color:white ;
+    text-decoration: none;
+}
+
+.link-selected:hover{
+    color:white ;
+    text-decoration: none;
+}
+
+.form-control, .form-select{
+    height: 30px;
+}
+
+
+
+

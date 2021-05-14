@@ -1,0 +1,29 @@
+{
+  "groups": [
+    {
+      "name": "cloudinary",
+      "type": "com.petkov.spr_final_1.config.CloudinaryConfig",
+      "sourceType": "com.petkov.spr_final_1.config.CloudinaryConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "cloudinary.cloud-name",
+      "type": "java.lang.String",
+      "description": "Cloudinary Cloud name.",
+      "sourceType": "com.petkov.spr_final_1.config.CloudinaryConfig"
+    },
+    {
+      "name": "cloudinary.api-key",
+      "type": "java.lang.String",
+      "description": "Cloudinary API key.",
+      "sourceType": "com.petkov.spr_final_1.config.CloudinaryConfig"
+    },
+    {
+      "name": "cloudinary.api-secret",
+      "type": "java.lang.String",
+      "description": "Cloudinary API secret.",
+      "sourceType": "com.petkov.spr_final_1.config.CloudinaryConfig"
+    }
+  ]
+}
